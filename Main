@@ -1,0 +1,19 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class Main {
+    public static void main(String[] args) {
+        List<Participant> participants = new ArrayList<>();
+
+        Participant participant1 = new Participant();
+        Participant participant2 = new Participant();
+        // Add more participants as needed
+
+        participants.add(participant1);
+        participants.add(participant2);
+        // Add more participants as needed
+
+        Coordinator coordinator = new Coordinator(participants);
+        coordinator.commitTransaction();
+    }
+}
