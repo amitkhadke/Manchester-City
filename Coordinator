@@ -1,0 +1,39 @@
+import java.util.List;
+
+public class Coordinator {
+    private List<Participant> participants;
+
+    public Coordinator(List<Participant> participants) {
+        this.participants = participants;
+    }
+
+    public boolean commitTransaction() {
+        // Send prepare message to all participants
+        for (Participant participant : participants) {
+            participant.prepare();
+        }
+
+        // Check if all participants vote to commit
+        for (Participant participant : participants) {
+            if (!participant.isVoteToCommit()) {
+                // Rollback transaction
+                rollback(transactionId);
+                return false;
+            }
+        }
+
+        // Send commit message to all participants
+        for (Participant participant : participants) {
+            participant.commit();
+        }
+
+        return true;
+    }
+
+    private void rollback(int transactionId) {
+        // Send rollback message to all participants
+        for (Participant participant : participants) {
+            participant.rollback();
+        }
+    }
+}
