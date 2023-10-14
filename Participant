@@ -1,0 +1,25 @@
+public class Participant {
+    private int transactionId;
+    private boolean voteToCommit;
+
+    public boolean prepare() {
+        // Send prepare message to coordinator
+        // Await decision from coordinator
+
+        voteToCommit = ... // Get vote decision from coordinator
+
+        return voteToCommit;
+    }
+
+    public void commit() {
+        // Commit transaction
+    }
+
+    public void rollback() {
+        // Rollback transaction
+    }
+
+    public boolean isVoteToCommit() {
+        return voteToCommit;
+    }
+}
